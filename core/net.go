@@ -166,7 +166,7 @@ func StartListening(address string) NodeChannel {
 			connection, err := l.AcceptTCP()
 			networkError(err)
 
-			cb <- &Node{connect, int(time.Now().Unix())}
+			cb <- &Node{connection, int(time.Now().Unix())}
 		}
 	}(listener)
 

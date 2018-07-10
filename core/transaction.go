@@ -58,7 +58,7 @@ func (t *Transaction) VerifyTransaction(pow []byte) bool {
 
 }
 
-func (t *Transaction) GenerateNonce(prefix []byte) uint23 {
+func (t *Transaction) GenerateNonce(prefix []byte) uint32 {
 	//  生成Nonce值
 	newT := t
 
@@ -67,7 +67,7 @@ func (t *Transaction) GenerateNonce(prefix []byte) uint23 {
 			break
 		}
 
-		newt.Header.Nonce++
+		newT.Header.Nonce++
 	}
 
 	return newT.Header.Nonce
@@ -76,7 +76,7 @@ func (t *Transaction) GenerateNonce(prefix []byte) uint23 {
 func (t *Transaction) MarshalBinary() ([]byte, error) {
 	// 交易序列化
 
-	headerBytes := t.Header.MarshalBinary()
+	headerBytes, _ := t.Header.MarshalBinary()
 
 	if len(headerBytes) != TRANSACTION_HEADER_SIZE {
 		return nil, errors.New("Header marsahlling error")

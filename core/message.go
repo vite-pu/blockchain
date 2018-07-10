@@ -28,7 +28,7 @@ func (m *Message) MarshalBinary() ([]byte, error) {
 	buf.Write(helpers.FitBytesInto(m.Options, MESSAGE_OPTIONS_SIZE))
 	buf.Write(m.Data)
 
-	rerurn buf.Bytes(), nil
+	return buf.Bytes(), nil
 }
 
 func (m *Message) UnmarshalBinary(d []byte) error {

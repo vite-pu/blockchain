@@ -40,7 +40,7 @@ func (bl *Blockchain) CreateNewBlock() Block {
 		PrevBlockHash = PrevBlock.Hash()
 	}
 
-	b := NewBlock(previousBlock)
+	b := NewBlock(PrevBlockHash)
 	b.BlockHeader.Origin = Core.Keypair.Public
 
 	return b
@@ -100,7 +100,7 @@ func (bl *Blockchain) Run() {
 				if !reflect.DeepEqual(b.BlockHeader.MerkleRoot, bl.CurrentBlock.MerkleRoot) {
 					// Transactions are different
 					fmt.Println("Transactions are different. finding diff")
-					transDiff = DiffTransactionSlice(*bl.CurrentBlock.TransactionSlice, b.TransactionSlice)
+					transDiff = DiffTransactionSlice(*bl.CurrentBlock.TransactionSlice, *b.TransactionSlice)
 
 				}
 
@@ -153,7 +153,7 @@ func (bl *Blockchain) GenerateBlocks() chan Block {
 		fmt.Println("Starting Proof of Work...")
 		block.BlockHeader.MerkleRoot = block.GenerateMerkleRoot()
 		block.BlockHeader.Nonce = 0
-		block.BlockHeader.Timestamp = uint32(time.Now().Unix())
+		block.BlockHeader.TimeStamp = uint32(time.Now().Unix())
 
 		for true { // 挖矿过程
 

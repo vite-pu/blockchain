@@ -39,7 +39,7 @@ func Start(address string) {
 	go func() {
 		for {
 			select {
-			case msg := <-Core.Network.IncomingMessage:
+			case msg := <-Core.Network.IncomingMessages:
 				HandleIncomingMessage(msg)
 			}
 		}

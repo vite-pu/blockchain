@@ -8,7 +8,7 @@ const (
 
 	NETWORK_KEY_SIZE		= 80
 
-	TRANSACTION_KEY_SIZE	= NETWORK_KEY_SIZE /* from key */ + NETWORK_KEY_SIZE /* to key */ + 4 /* int32 timestamp */ +32 /* sha256 payload hash */ + 4 /* int32 payload length */ + 4 /* int32 nonce */
+	TRANSACTION_HEADER_SIZE	= NETWORK_KEY_SIZE /* from key */ + NETWORK_KEY_SIZE /* to key */ + 4 /* int32 timestamp */ +32 /* sha256 payload hash */ + 4 /* int32 payload length */ + 4 /* int32 nonce */
 	BLOCK_HEADER_SIZE		= NETWORK_KEY_SIZE /* origin key */ + 4 /* int32 timestamp */ + 32 /* prev block hash */ + 32 /* merkle tree hash */ + 4 									 /* int32 nonce */
 
 	KEY_POW_COMPLEXITY		= 0
